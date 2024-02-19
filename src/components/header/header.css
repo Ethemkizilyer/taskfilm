@@ -1,0 +1,60 @@
+.header {
+    height: 590px;
+    margin: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-image: url("https://s3-alpha-sig.figma.com/img/a46e/9676/34d40bd2e2c96e8e491e48ca6866b323?Expires=1708905600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FH6XQrL0nw4YiktruZTui-jGkUGPw0gY16VPUIQyIy8jMIBXJ-QasQBePx8zxDz8J~gjXNe3EL0CsJ6CXY04dvNO9JibeDULUaWE162FmcR3k6z1XqvCLVfjLVtZ~1BLMQUJcS6bWSR6Oz6asN11gRctT9NWxKwX~HsuJy449T4VaQD9dsFqL445nOGgW~jx0M7awfYUkrWYYyzWy3laDjMHGBzUS5lCsffdclyhEg-NnDGTDhPyF4Cn~a4IlMpx3muVOXdCxL62WH1APXgbKqPF0M9qL1gswxyBHsaypXMeq5FzeN-XfaRZrH6oM~qsTSPvgWuoFmgvnId0TnBFEg__");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header .header-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+}
+
+.left-section, .title-section, .right-section {
+    flex: 1;
+    color:#ffff
+}
+
+.left-section {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 45px;
+}
+
+.right-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 45px;
+}
+
+.title-section {
+    text-align: center;
+    h3 {
+        font-weight: 400;
+        font-style: normal;
+        font-size: 25px;
+        line-height: 30.88px;
+        margin-bottom: 0;
+    }
+    h1 {
+        font-weight: 700;
+        font-style: normal;
+        font-size: 25px;
+        line-height: 30.48px;
+        margin-bottom: 0;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .header{
+        display: none;
+    }
+}

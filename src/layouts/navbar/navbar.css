@@ -1,0 +1,88 @@
+.scrollspy {
+    display: flex;
+    
+  }
+.current {
+    border-bottom: 2px solid #e8282b;
+  }
+  .scrolled {
+    border-bottom: 0px solid #e8282b;
+  }
+.nav {
+    position: fixed;
+    top: 0;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.63) 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 1000;
+    width: calc(100% - 200px);
+    margin: 80px 100px 100px 100px;
+    backdrop-filter: blur(20px);
+    border-radius: 4px;
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav > .nav-header {
+    display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #000;
+    padding: 0px 10px;
+}
+
+.nav > .nav-header > .nav-title a{
+    color: #000;
+    text-decoration: none;
+}
+
+.nav > .nav-links {
+    display: inline;
+    float: right;
+    padding: 0;
+    font-size: 18px;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.nav > .nav-links a {
+    display: inline-block;
+    padding: 0 10px;
+    text-decoration: none;
+}
+
+.nav > .nav-links a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav > #nav-check {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .scrollspy {
+        display: block;
+        position: relative;
+        left: -34px;
+      }
+    .nav {
+        margin: 20px 0 0 0;
+        width: 100%;
+        position: sticky;
+    }
+
+    .nav > .nav-header > .nav-title {
+        font-size: 18px;
+    }
+
+    .nav > .nav-links {
+        top: 100%;
+    }
+
+    .nav > #nav-check:checked ~ .nav-links {
+        height: auto;
+        overflow-y: hidden;
+    }
+}
