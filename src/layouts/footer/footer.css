@@ -3,6 +3,8 @@
     left: 0;
     bottom: 0;
     width: 100%;
+    max-width: 1440px;
+    margin: auto;
     height: 75px;
     background: rgba(36, 18, 58, 1);
     color: white;

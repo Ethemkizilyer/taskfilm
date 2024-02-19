@@ -9,12 +9,14 @@
     border-bottom: 0px solid #e8282b;
   }
 .nav {
-    position: fixed;
-    top: 0;
+    width: 100%;
+    position: sticky;
+    top: 75px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.63) 0%, rgba(255, 255, 255, 0) 100%);
     z-index: 1000;
-    width: calc(100% - 200px);
-    margin: 80px 100px 100px 100px;
+    width: calc(100% - 120px);
+    margin: auto;
+    /* margin: 80px 100px 100px 100px; */
     backdrop-filter: blur(20px);
     border-radius: 4px;
     display: flex;
