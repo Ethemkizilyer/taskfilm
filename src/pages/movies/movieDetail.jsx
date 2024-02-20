@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import "./movieDetail.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { castList } from "../../reducers/castSlice";
 
 import defaultImg from "../../utils/defaultImg.jpg";
@@ -8,17 +8,33 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { cast } from "../../services/cast";
 import { genresList } from "../../reducers/genresSlice";
 import { genres } from "../../services/genres";
+import axios from "axios";
 const MovieDetailViewerPage = (props) => {
   const dispatch = useAppDispatch();
   const castD = useAppSelector(castList);
   const genresD = useAppSelector(genresList);
   let data = useLocation();
+  const [trailer, setTrailer] = useState("");
+const [loading, setLoading] = useState(false);
   useEffect(() => {
     dispatch(cast(data?.state?.detail?.id));
     dispatch(genres(data?.pathname.includes("movies") ? "movie" : "tv"));
+    async function getTrailer() {
+      setLoading(true);
+      const request = await axios.get(
+        `https://api.themoviedb.org/3/movie/${data.state.detail?.id}/videos?api_key=26ba5e77849587dbd7df199727859189`
+      );
+      setTrailer(
+        request.data.results.filter(
+          (mov) => mov.name === "Official Trailer" || mov.type === "Trailer"
+        )[0].key
+      );
+      setLoading(false);
+    }
+    getTrailer();
   }, []);
   const elements = castD?.cast?.map(({ id, name, profile_path }) => (
-    <li key={id} style={{listStyle:"none"}}>
+    <li key={id} className="cast-item" style={{listStyle:"none"}}>
       <img
         src={
           profile_path
@@ -26,17 +42,18 @@ const MovieDetailViewerPage = (props) => {
             : defaultImg
         }
         alt={name}
-        width={70}
+        width={100}
         height={80}
-        style={{ display: "block", position: "relative"}}
+        className="cast-image"
+        style={{ objectFit:"cover"}}
       />
-      <p style={{ color: "white", fontSize: "10px" ,margin:0,textAlign:"center" }}>{name}</p>
+      <p className="cast-name" style={{ color: "white", fontSize: "10px" ,margin:0}}>{name}</p>
     </li>
   ));
   const foundGenres = genresD?.genres?.filter(gen => data?.state?.detail?.genre_ids.includes(gen.id)).map(g => g.name);
 const output = foundGenres?.join(", ");
   return (
-    <div>
+  
       <div className="banner">
         <img
           alt="bg"
@@ -60,17 +77,19 @@ const output = foundGenres?.join(", ");
               {/* <p>{data.state.detail?.overview}</p> */}
               <p><strong>Original Title:</strong> {data.state.detail?.original_title}</p>
       <p><strong>Overview:</strong> {data.state.detail?.overview}</p>
-      <p><strong>Release Date:</strong> {data.state.detail?.release_date}</p>
+      <p><strong>Release Date:</strong>{data.state.detail?.release_date
+                ? data.state.detail?.release_date 
+                : "-"}</p>
       <p><strong>Genres:</strong>{output}</p>
               <p><strong>Popularity:</strong> {data.state.detail?.popularity}</p>
       <p><strong>Vote Average:</strong> {data.state.detail?.vote_average}</p>
       <p><strong>Vote Count:</strong> {data.state.detail?.vote_count}</p>
-      <p><strong>Release Date:</strong> {data.state.detail?.release_date
-                ? data.state.detail?.release_date 
-                : "-"}</p>
             </div>
             <div className="movie-actions">
-              <div className="play-button">
+            
+                <a className="play-button" href={`https://www.youtube.com/watch?v=${trailer}`}
+                  target="_blank"
+                  rel="noreferrer">
                 <svg
                   fill="currentColor"
                   viewBox="0 0 16 16"
@@ -80,12 +99,11 @@ const output = foundGenres?.join(", ");
                   <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 010 1.393z" />
                 </svg>
                 PLAY
-              </div>
-              <div className="watch-later-button">WATCH LATER</div>
+                </a>
             </div>
             <div className="scroll-container">
               {castD?.cast?.length > 0 && (
-                <ol style={{ display: "flex", gap: "5px", padding: 0, margin: 0  }}>
+                <ol className="cast-list" style={{ display: "flex", gap: "5px", padding: 0, margin: 0  }}>
                   {elements}
                 </ol>
               )}{" "}
@@ -95,7 +113,7 @@ const output = foundGenres?.join(", ");
 
         <div></div>
       </div>
-    </div>
+    
   );
 };
 
