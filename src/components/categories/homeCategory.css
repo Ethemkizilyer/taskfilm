@@ -16,31 +16,54 @@
 }
 
 .home-movies-category .wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 sütunlu grid */
+  grid-gap: 10px; /* Sütunlar arasındaki boşluk */
+  justify-items: center; /* Sütun içindeki öğeleri ortala */
+  align-items: center; /* Satır içindeki öğeleri ortala */
+
 }
 
 .home-movies-category .card {
-    margin-right: 10px;
+  color: #24123A; 
+  padding: 20px; 
+  text-align: center;
+
+}
+  
+
+
+@media (max-width: 1180px) {
+    .home-movies-category .wrapper{
+        grid-template-columns: repeat(3, 1fr);
+      }
+}
+@media (max-width: 886px) {
+    .home-movies-category .wrapper{
+        grid-template-columns: repeat(2, 1fr);
+      }
 }
 
 @media (max-width: 768px) {
+    .home-movies-category .wrapper {
+        grid-template-columns: repeat(2, 1fr);
+      }
     .home-movies-category .title h1 {
         font-size: 18px;
         line-height: 22px;
     }
 }
-
-
 @media only screen and (max-width:768px) {
     .home-movies-category .wrapper {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
     }
-
+@media screen and (max-width: 564px) {
+    .home-movies-category .wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
     .home-movies-category .card {
         flex: 0 0 calc(33.333% - 10px);
         margin-bottom: 20px;

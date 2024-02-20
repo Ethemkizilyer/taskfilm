@@ -22,7 +22,7 @@ const HomeMoviesCategory = (props) => {
         <h1>{title}</h1>
       </div>
       <div className="wrapper">
-        {populerData.results?.slice(0, 4).map((res, index) => (
+        {populerData.results?.slice(0, 8).map((res, index) => (
           <div className="card" key={index}>
             <Link to={`${category === "movies" ? "movies" : "tvseries"}/${res.id}`} state={{ detail: res }} onClick={()=>window.scrollTo(0, 0)}>
               <MovieCard
