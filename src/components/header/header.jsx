@@ -13,7 +13,7 @@ const HeaderComponent = (props) => {
     },[topRatedMovies])
     return (
         <div className="header">
-            <div class="bg-mix"></div>
+            <div className="bg-mix"></div>
             <div className="header-wrapper">
                 <div className="left-section">
                     <Link to={`movies/${topRatedMovies[0]?.id}`} state={{detail:topRatedMovies[0]}}>

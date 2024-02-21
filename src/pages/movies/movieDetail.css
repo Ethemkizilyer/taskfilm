@@ -125,7 +125,7 @@ margin-right: 5px;
     overflow: auto;
     padding: 0 20px;
     border-radius: 5px;
-    margin: 0 30px 0 0;
+    margin: 10px 30px 0 20px;
     cursor: pointer;
     height: 255px;
   }

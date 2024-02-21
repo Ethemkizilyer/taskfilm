@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./movieDetail.css";
 import { useEffect, useState } from "react";
 import { castList } from "../../reducers/castSlice";
-
+import { FaStar } from 'react-icons/fa';
 import defaultImg from "../../utils/defaultImg.jpg";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { cast } from "../../services/cast";
@@ -22,16 +22,16 @@ const [loading, setLoading] = useState(false);
     async function getTrailer() {
       setLoading(true);
       const request = await axios.get(
-        `https://api.themoviedb.org/3/movie/${data.state.detail?.id}/videos?api_key=26ba5e77849587dbd7df199727859189`
+        `https://api.themoviedb.org/3/movie/${data?.state?.detail?.id}/videos?api_key=26ba5e77849587dbd7df199727859189`
       );
       setTrailer(
-        request.data.results.filter(
-          (mov) => mov.name === "Official Trailer" || mov.type === "Trailer"
-        )[0].key
+        request?.data?.results.filter(
+          (mov) => mov?.name === "Official Trailer" || mov.type === "Trailer"
+        )[0]?.key
       );
       setLoading(false);
     }
-    getTrailer();
+    data?.pathname.includes("movies") && getTrailer();
   }, []);
   const elements = castD?.cast?.map(({ id, name, profile_path }) => (
     <li key={id} className="cast-item" style={{listStyle:"none"}}>
@@ -82,10 +82,10 @@ const output = foundGenres?.join(", ");
                 : "-"}</p>
       <p><strong>Genres:</strong>{output}</p>
               <p><strong>Popularity:</strong> {data.state.detail?.popularity}</p>
-      <p><strong>Vote Average:</strong> {data.state.detail?.vote_average}</p>
+      <p style={{display:"flex",alignItems:"center",gap:"5px"}}><strong>Vote Average:</strong> {data.state.detail?.vote_average.toFixed(1)} <FaStar style={{color:`${data.state.detail?.vote_average.toFixed(1) < 5 ? "red" : data.state.detail?.vote_average.toFixed(1) <=6 ? "orange" : "yellow"}`}}/></p>
       <p><strong>Vote Count:</strong> {data.state.detail?.vote_count}</p>
             </div>
-            <div className="movie-actions">
+            { data?.pathname.includes("movies") && <div className="movie-actions">
             
                 <a className="play-button" href={`https://www.youtube.com/watch?v=${trailer}`}
                   target="_blank"
@@ -100,7 +100,7 @@ const output = foundGenres?.join(", ");
                 </svg>
                 PLAY
                 </a>
-            </div>
+            </div>}
             <div className="scroll-container">
               {castD?.cast?.length > 0 && (
                 <ol className="cast-list" style={{ display: "flex", gap: "5px", padding: 0, margin: 0  }}>
