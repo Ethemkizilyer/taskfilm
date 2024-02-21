@@ -18,7 +18,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="nav-links">
-             <div>
+        
                 <a href="#section-1"
         className={activeLink === '#section-1' ? 'active' : ''}
         onClick={() => handleClick('#section-1')}>
@@ -29,7 +29,7 @@ const Navbar = () => {
         onClick={() => handleClick('#section-2')}>
                     Popular TV Series
                 </a>
-            </div>
+            
             </div>
       </div>
     )

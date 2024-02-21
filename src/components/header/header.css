@@ -1,7 +1,7 @@
 .header {
     position: relative;
     height: 590px;
-    margin: 20px;
+    margin: 0 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

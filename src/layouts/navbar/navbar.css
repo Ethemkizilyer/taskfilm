@@ -1,7 +1,7 @@
 .nav {
     width: 100%;
     position: sticky;
-    top: 75px;
+    top: 55px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.63) 0%, rgba(255, 255, 255, 0) 100%);
     z-index: 1000;
     width: calc(100% - 120px);
@@ -80,6 +80,9 @@ a {
 
     .nav > .nav-links {
         top: 100%;
+        display: flex;
+        justify-content: end;
+        flex-direction: column;
     }
 
     .nav > #nav-check:checked ~ .nav-links {
